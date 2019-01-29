@@ -54,6 +54,8 @@ class XMLTestRunner(DiscoverRunner):
 
     def run_suite(self, suite, **kwargs):
         runner_kwargs = self.get_test_runner_kwargs()
+        runner_kwargs.pop('failfast',None)
+        runner_kwargs.pop('resultclass',None)
         runner = self.test_runner(**runner_kwargs)
         results = runner.run(suite)
         if hasattr(runner_kwargs['output'], 'close'):
